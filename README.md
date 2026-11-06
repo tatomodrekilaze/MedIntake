@@ -61,3 +61,7 @@ All names, ID numbers, phone numbers and emails in this repo are made up.
 Commercial use is not allowed without a separate license from me. That includes private clinics, paid or hosted services, reselling, and building it into something you sell. [COMMERCIAL.md](COMMERCIAL.md) spells out what counts and how to ask.
 
 "MedIntake" and the logo aren't covered by the license. If you fork the project, please give it a different name.
+
+## Note
+
+I built MedIntake hoping to change how doctors work and give them more time to focus on patients. But as I explored it further, I realized it wasn’t saving them time it was often adding more work. It wasn’t solving the problem I set out to solve. I’m sharing the code so others can learn from it, build on it, or take it in a better direction.
