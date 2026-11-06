@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#f6f4ef" />
+  <title>MedIntake</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+Georgian:wght@400;500;600;700&family=Noto+Serif+Georgian:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/tokens.css" />
+  <link rel="stylesheet" href="/patient.css" />
+</head>
+<body class="pt" data-screen="landing">
+  <a class="skip-link" href="#main" data-i18n="skipLink"></a>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="/" aria-label="MedIntake">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-name">MedIntake</span>
+      </a>
+      <div class="topbar-actions">
+        <div class="seg" role="group" id="lang-switch" data-i18n-aria-label="langLabel">
+          <button type="button" class="seg-btn" data-lang="ge" lang="ka" aria-pressed="true">
+            <span class="seg-long" lang="ka">ქართული</span><span class="seg-short" lang="ka" aria-hidden="true">ქა</span>
+          </button>
+          <button type="button" class="seg-btn" data-lang="en" lang="en" aria-pressed="false">
+            <span class="seg-long">English</span><span class="seg-short" aria-hidden="true">EN</span>
+          </button>
+        </div>
+        <button type="button" class="btn btn-quiet btn-sm" id="btn-reset" hidden>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v4h4" /></svg>
+          <span data-i18n="startOver"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <noscript><p class="noscript">MedIntake needs JavaScript. / <span lang="ka">MedIntake-ს JavaScript სჭირდება.</span></p></noscript>
+
+  <main id="main" tabindex="-1">
+    <!-- Landing -->
+    <section class="screen is-active" id="screen-landing" aria-labelledby="land-title">
+      <div class="landing">
+        <div class="landing-main">
+          <p class="eyebrow" data-i18n="landEyebrow"></p>
+          <h1 class="display" id="land-title" data-i18n="landTitle"></h1>
+          <p class="landing-sub" data-i18n="landSub"></p>
+
+          <ul class="trust">
+            <li>
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3z" /><path d="M9 12l2 2 4-4" /></svg>
+              <span data-i18n="landTrust"></span>
+            </li>
+            <li>
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>
+              <span data-i18n="landTime"></span>
+            </li>
+            <li>
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4V5z" /></svg>
+              <span data-i18n="landWords"></span>
+            </li>
+          </ul>
+
+          <div class="resume" id="resume-card" hidden>
+            <h2 class="resume-title" data-i18n="resumeTitle"></h2>
+            <p class="resume-text" data-i18n="resumeText"></p>
+            <div class="resume-actions">
+              <button type="button" class="btn btn-primary" id="btn-resume"><span data-i18n="resumeContinue"></span></button>
+              <button type="button" class="btn btn-ghost" id="btn-resume-new"><span data-i18n="startOver"></span></button>
+            </div>
+          </div>
+
+          <fieldset class="lang-pick">
+            <legend class="lang-legend" data-i18n="landLangLegend"></legend>
+            <div class="lang-options">
+              <label class="lang-option">
+                <input type="radio" name="lang-choice" value="ge" />
+                <span class="lang-option-body">
+                  <span class="lang-native" lang="ka">ქართული</span>
+                  <span class="lang-tick" aria-hidden="true"></span>
+                </span>
+              </label>
+              <label class="lang-option">
+                <input type="radio" name="lang-choice" value="en" />
+                <span class="lang-option-body">
+                  <span class="lang-native" lang="en">English</span>
+                  <span class="lang-tick" aria-hidden="true"></span>
+                </span>
+              </label>
+            </div>
+            <p class="lang-soon">
+              <span data-i18n="landSoon"></span>:
+              <span lang="ru">Русский</span> · <span lang="hy">Հայերեն</span> · <span lang="az">Azərbaycan</span> · <span lang="tr">Türkçe</span>
+            </p>
+          </fieldset>
+
+          <button type="button" class="btn btn-primary btn-lg btn-begin" id="btn-begin">
+            <span data-i18n="landBegin"></span>
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+          </button>
+        </div>
+
+        <aside class="how" aria-labelledby="how-title">
+          <h2 class="how-title" id="how-title" data-i18n="howTitle"></h2>
+          <ol class="how-list">
+            <li><span class="how-num" aria-hidden="true">1</span><p data-i18n="how1"></p></li>
+            <li><span class="how-num" aria-hidden="true">2</span><p data-i18n="how2"></p></li>
+            <li><span class="how-num" aria-hidden="true">3</span><p data-i18n="how3"></p></li>
+          </ol>
+        </aside>
+      </div>
+
+      <footer class="landing-foot">
+        <a class="quiet-link" href="/doctor/" data-i18n="clinicianLink"></a>
+        <button type="button" class="dev-toggle" id="btn-skip-form" aria-pressed="false">
+          <span data-i18n="demoToggle"></span>
+          <span class="dev-switch" aria-hidden="true"></span>
+          <strong id="skip-toggle-state"></strong>
+        </button>
+      </footer>
+    </section>
+
+    <!-- Patient details: four guided steps -->
+    <section class="screen" id="screen-info" aria-labelledby="info-title">
+      <div class="wrap">
+        <h1 class="visually-hidden" id="info-title" data-i18n="beforeVisit"></h1>
+        <nav class="stepper" id="stepper" data-i18n-aria-label="stagesLabel">
+          <p class="stepper-count" id="stepper-count"></p>
+          <ol class="stepper-list">
+            <li data-step="1"><span class="stepper-dot" aria-hidden="true">1</span><span class="stepper-name" data-i18n="sAbout"></span><span class="visually-hidden stepper-sr"></span></li>
+            <li data-step="2"><span class="stepper-dot" aria-hidden="true">2</span><span class="stepper-name" data-i18n="sContact"></span><span class="visually-hidden stepper-sr"></span></li>
+            <li data-step="3"><span class="stepper-dot" aria-hidden="true">3</span><span class="stepper-name" data-i18n="sHealth"></span><span class="visually-hidden stepper-sr"></span></li>
+            <li data-step="4"><span class="stepper-dot" aria-hidden="true">4</span><span class="stepper-name" data-i18n="sVisit"></span><span class="visually-hidden stepper-sr"></span></li>
+          </ol>
+        </nav>
+
+        <form id="patient-form" class="form" method="post" action="about:blank" autocomplete="off" novalidate>
+          <div class="form-error" id="form-error" role="alert" hidden></div>
+
+          <!-- Step 1 -->
+          <section class="fstep panel is-current" data-fstep="1" aria-labelledby="fs1-title">
+            <header class="fstep-head">
+              <h2 class="fstep-title" id="fs1-title" tabindex="-1" data-i18n="s1Title"></h2>
+              <p class="fstep-lead" data-i18n="s1Lead"></p>
+              <p class="req-note" data-i18n="reqNote"></p>
+            </header>
+            <div class="grid-2">
+              <div class="field">
+                <label class="field-label" for="f-firstName"><span data-i18n="firstName"></span><span class="req" aria-hidden="true">*</span></label>
+                <input class="input" id="f-firstName" name="firstName" type="text" required maxlength="80" />
+              </div>
+              <div class="field">
+                <label class="field-label" for="f-lastName"><span data-i18n="lastName"></span><span class="req" aria-hidden="true">*</span></label>
+                <input class="input" id="f-lastName" name="lastName" type="text" required maxlength="80" />
+              </div>
+            </div>
+            <div class="field">
+              <label class="field-label" for="f-fatherName"><span data-i18n="fatherName"></span><span class="req" aria-hidden="true">*</span></label>
+              <input class="input" id="f-fatherName" name="fatherName" type="text" required maxlength="80" />
+            </div>
+            <div class="grid-2">
+              <div class="field">
+                <label class="field-label" for="f-personalId"><span data-i18n="idLabel"></span><span class="req" aria-hidden="true">*</span></label>
+                <input class="input input-mono" id="f-personalId" name="personalId" type="text" required inputmode="numeric" maxlength="11" pattern="[0-9]{11}" placeholder="01001012345" aria-describedby="f-personalId-hint" />
+                <p class="field-hint" id="f-personalId-hint" data-i18n="idHint"></p>
+              </div>
+              <div class="field">
+                <label class="field-label" for="f-dob"><span data-i18n="dob"></span><span class="req" aria-hidden="true">*</span></label>
+                <input class="input" id="f-dob" name="dob" type="date" required min="1900-01-01" />
+              </div>
+            </div>
+            <fieldset class="field choice-field">
+              <legend class="field-label"><span data-i18n="sex"></span><span class="req" aria-hidden="true">*</span></legend>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="sex" value="female" required /><span data-i18n="female"></span></label>
+                <label class="choice"><input type="radio" name="sex" value="male" /><span data-i18n="male"></span></label>
+              </div>
+            </fieldset>
+          </section>
+
+          <!-- Step 2 -->
+          <section class="fstep panel" data-fstep="2" aria-labelledby="fs2-title" hidden>
+            <header class="fstep-head">
+              <h2 class="fstep-title" id="fs2-title" tabindex="-1" data-i18n="s2Title"></h2>
+              <p class="fstep-lead" data-i18n="s2Lead"></p>
+            </header>
+            <div class="field">
+              <label class="field-label" for="f-phone"><span data-i18n="phone"></span><span class="req" aria-hidden="true">*</span></label>
+              <input class="input" id="f-phone" name="phone" type="tel" required inputmode="tel" maxlength="24" placeholder="+995 555 12 34 56" />
+            </div>
+            <div class="field">
+              <label class="field-label" for="f-email"><span data-i18n="email"></span><span class="opt" data-i18n="optional"></span></label>
+              <input class="input" id="f-email" name="email" type="email" inputmode="email" maxlength="120" />
+            </div>
+            <div class="grid-2">
+              <div class="field">
+                <label class="field-label" for="f-address"><span data-i18n="address"></span><span class="opt" data-i18n="optional"></span></label>
+                <input class="input" id="f-address" name="address" type="text" maxlength="160" />
+              </div>
+              <div class="field">
+                <label class="field-label" for="f-city"><span data-i18n="city"></span><span class="opt" data-i18n="optional"></span></label>
+                <select class="input" id="f-city" name="city">
+                  <option value="" data-i18n="select"></option>
+                  <option value="tbilisi" data-i18n-city="tbilisi"></option>
+                  <option value="batumi" data-i18n-city="batumi"></option>
+                  <option value="kutaisi" data-i18n-city="kutaisi"></option>
+                  <option value="rustavi" data-i18n-city="rustavi"></option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <label class="field-label" for="f-citizenship"><span data-i18n="citizenship"></span><span class="opt" data-i18n="optional"></span></label>
+              <select class="input" id="f-citizenship" name="citizenship">
+                <option value="ge" data-i18n="citizenshipGE"></option>
+                <option value="other" data-i18n="citizenshipOther"></option>
+              </select>
+            </div>
+            <fieldset class="field choice-field">
+              <legend class="field-label"><span data-i18n="insLegend"></span><span class="opt" data-i18n="optional"></span></legend>
+              <div class="choices choices-stack">
+                <label class="choice"><input type="radio" name="insuranceType" value="state" /><span data-i18n="insState"></span></label>
+                <label class="choice"><input type="radio" name="insuranceType" value="private" /><span data-i18n="insPrivate"></span></label>
+                <label class="choice"><input type="radio" name="insuranceType" value="self" /><span data-i18n="insSelf"></span></label>
+              </div>
+            </fieldset>
+            <div class="grid-2 reveal" id="ins-details" hidden>
+              <div class="field" id="ins-company-wrap">
+                <label class="field-label" for="f-insCompany"><span data-i18n="insCompany"></span><span class="opt" data-i18n="optional"></span></label>
+                <input class="input" id="f-insCompany" name="insCompany" type="text" maxlength="80" />
+              </div>
+              <div class="field" id="ins-policy-wrap">
+                <label class="field-label" for="f-insPolicy"><span data-i18n="insPolicy"></span><span class="opt" data-i18n="optional"></span></label>
+                <input class="input" id="f-insPolicy" name="insPolicy" type="text" maxlength="40" />
+              </div>
+            </div>
+          </section>
+
+          <!-- Step 3 (optional) -->
+          <section class="fstep panel" data-fstep="3" aria-labelledby="fs3-title" hidden>
+            <header class="fstep-head">
+              <h2 class="fstep-title" id="fs3-title" tabindex="-1" data-i18n="s3Title"></h2>
+              <p class="fstep-lead" data-i18n="s3Lead"></p>
+              <button type="button" class="btn btn-secondary btn-sm" id="btn-step-skip">
+                <span data-i18n="skipStep"></span>
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+              </button>
+            </header>
+
+            <h3 class="group-title" data-i18n="grpAllergy"></h3>
+            <fieldset class="field choice-field">
+              <legend class="field-label" data-i18n="allergyQ"></legend>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="allergies" value="none" /><span data-i18n="allergyNo"></span></label>
+                <label class="choice"><input type="radio" name="allergies" value="yes" /><span data-i18n="allergyYes"></span></label>
+              </div>
+            </fieldset>
+            <div class="field reveal" id="allergies-detail-wrap" hidden>
+              <label class="field-label" for="f-allergiesDetail" data-i18n="allergiesDetail"></label>
+              <textarea class="input" id="f-allergiesDetail" name="allergiesDetail" rows="2" maxlength="600"></textarea>
+            </div>
+            <div class="field">
+              <label class="field-label" for="f-medications" data-i18n="medsQ"></label>
+              <textarea class="input" id="f-medications" name="medications" rows="2" maxlength="800" data-i18n-placeholder="medsPh2" aria-describedby="f-medications-hint"></textarea>
+              <p class="field-hint" id="f-medications-hint" data-i18n="medsHint"></p>
+            </div>
+
+            <h3 class="group-title" data-i18n="grpHistory"></h3>
+            <fieldset class="field choice-field">
+              <legend class="field-label" data-i18n="chronicQ"></legend>
+              <div class="choices choices-wrap">
+                <label class="choice choice-check"><input type="checkbox" name="chronicList" value="diabetes" /><span data-i18n="cDiabetes"></span></label>
+                <label class="choice choice-check"><input type="checkbox" name="chronicList" value="hypertension" /><span data-i18n="cHypertension"></span></label>
+                <label class="choice choice-check"><input type="checkbox" name="chronicList" value="heart" /><span data-i18n="cHeart"></span></label>
+                <label class="choice choice-check"><input type="checkbox" name="chronicList" value="asthma" /><span data-i18n="cAsthma"></span></label>
+                <label class="choice choice-check"><input type="checkbox" name="chronicList" value="thyroid" /><span data-i18n="cThyroid"></span></label>
+                <label class="choice choice-check"><input type="checkbox" name="chronicList" value="kidney" /><span data-i18n="cKidney"></span></label>
+                <label class="choice choice-check"><input type="checkbox" name="chronicList" value="none" /><span data-i18n="cNoneOnly"></span></label>
+              </div>
+            </fieldset>
+            <div class="field">
+              <label class="field-label" for="f-chronic" data-i18n="chronicOtherQ"></label>
+              <textarea class="input" id="f-chronic" name="chronic" rows="2" maxlength="600"></textarea>
+            </div>
+            <div class="grid-2">
+              <div class="field">
+                <label class="field-label" for="f-surgeries" data-i18n="surgQ"></label>
+                <textarea class="input" id="f-surgeries" name="surgeries" rows="2" maxlength="600" data-i18n-placeholder="surgPh"></textarea>
+              </div>
+              <div class="field">
+                <label class="field-label" for="f-hospital" data-i18n="hospQ"></label>
+                <textarea class="input" id="f-hospital" name="hospital" rows="2" maxlength="600" data-i18n-placeholder="hospPh"></textarea>
+              </div>
+            </div>
+            <fieldset class="field choice-field">
+              <legend class="field-label" data-i18n="famQ"></legend>
+              <div class="choices choices-wrap">
+                <label class="choice choice-check"><input type="checkbox" name="familyList" value="diabetes" /><span data-i18n="cDiabetes"></span></label>
+                <label class="choice choice-check"><input type="checkbox" name="familyList" value="heart" /><span data-i18n="cHeart"></span></label>
+                <label class="choice choice-check"><input type="checkbox" name="familyList" value="hypertension" /><span data-i18n="cHypertension"></span></label>
+                <label class="choice choice-check"><input type="checkbox" name="familyList" value="stroke" /><span data-i18n="cStroke"></span></label>
+                <label class="choice choice-check"><input type="checkbox" name="familyList" value="cancer" /><span data-i18n="cCancer"></span></label>
+                <label class="choice choice-check"><input type="checkbox" name="familyList" value="none" /><span data-i18n="cNoneUnsure"></span></label>
+              </div>
+            </fieldset>
+
+            <h3 class="group-title" data-i18n="grpLife"></h3>
+            <fieldset class="field choice-field">
+              <legend class="field-label" data-i18n="smokeQ"></legend>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="smoking" value="no" /><span data-i18n="smokeNo"></span></label>
+                <label class="choice"><input type="radio" name="smoking" value="yes" /><span data-i18n="smokeYes"></span></label>
+                <label class="choice"><input type="radio" name="smoking" value="former" /><span data-i18n="smokeFormer2"></span></label>
+              </div>
+            </fieldset>
+            <fieldset class="field choice-field">
+              <legend class="field-label" data-i18n="alcQ"></legend>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="alcohol" value="no" /><span data-i18n="alcNo2"></span></label>
+                <label class="choice"><input type="radio" name="alcohol" value="rarely" /><span data-i18n="alcRare"></span></label>
+                <label class="choice"><input type="radio" name="alcohol" value="regular" /><span data-i18n="alcReg"></span></label>
+              </div>
+            </fieldset>
+            <fieldset class="field choice-field reveal" id="pregnancy-wrap" hidden>
+              <legend class="field-label" data-i18n="pregQ"></legend>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="pregnancy" value="no" /><span data-i18n="pregNo"></span></label>
+                <label class="choice"><input type="radio" name="pregnancy" value="yes" /><span data-i18n="pregMaybe"></span></label>
+                <label class="choice"><input type="radio" name="pregnancy" value="na" /><span data-i18n="pregNa2"></span></label>
+              </div>
+            </fieldset>
+
+            <h3 class="group-title" data-i18n="grpRecent"></h3>
+            <fieldset class="field choice-field">
+              <legend class="field-label" data-i18n="feverQ"></legend>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="fever" value="no" /><span data-i18n="feverNo"></span></label>
+                <label class="choice"><input type="radio" name="fever" value="yes" /><span data-i18n="feverYes"></span></label>
+              </div>
+            </fieldset>
+            <fieldset class="field choice-field">
+              <legend class="field-label" data-i18n="weightQ"></legend>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="weightChange" value="no" /><span data-i18n="wcNo"></span></label>
+                <label class="choice"><input type="radio" name="weightChange" value="loss" /><span data-i18n="wcLost"></span></label>
+                <label class="choice"><input type="radio" name="weightChange" value="gain" /><span data-i18n="wcGained"></span></label>
+              </div>
+            </fieldset>
+            <fieldset class="field choice-field">
+              <legend class="field-label" data-i18n="sleepQ"></legend>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="sleep" value="ok" /><span data-i18n="sleepOk2"></span></label>
+                <label class="choice"><input type="radio" name="sleep" value="bad" /><span data-i18n="sleepBad2"></span></label>
+                <label class="choice"><input type="radio" name="sleep" value="too_much" /><span data-i18n="sleepMuch2"></span></label>
+              </div>
+            </fieldset>
+
+            <h3 class="group-title" data-i18n="grpBody"></h3>
+            <div class="grid-2">
+              <div class="field">
+                <label class="field-label" for="f-height" data-i18n="height"></label>
+                <input class="input" id="f-height" name="height" type="number" min="50" max="250" inputmode="numeric" placeholder="170" />
+              </div>
+              <div class="field">
+                <label class="field-label" for="f-weight" data-i18n="weight"></label>
+                <input class="input" id="f-weight" name="weight" type="number" min="10" max="300" step="0.1" inputmode="decimal" placeholder="68" />
+              </div>
+              <div class="field">
+                <label class="field-label" for="f-bloodType" data-i18n="bloodType"></label>
+                <select class="input" id="f-bloodType" name="bloodType">
+                  <option value="" data-i18n="select"></option>
+                  <option>O+</option><option>O-</option>
+                  <option>A+</option><option>A-</option>
+                  <option>B+</option><option>B-</option>
+                  <option>AB+</option><option>AB-</option>
+                  <option value="unknown" data-i18n="bloodUnknown"></option>
+                </select>
+              </div>
+              <div class="field">
+                <label class="field-label" for="f-lastCheckup" data-i18n="checkupQ"></label>
+                <select class="input" id="f-lastCheckup" name="lastCheckup">
+                  <option value="" data-i18n="select"></option>
+                  <option value="month" data-i18n="checkMonth"></option>
+                  <option value="year" data-i18n="checkYear"></option>
+                  <option value="more" data-i18n="checkMore"></option>
+                  <option value="never" data-i18n="checkNever"></option>
+                </select>
+              </div>
+            </div>
+          </section>
+
+          <!-- Step 4 -->
+          <section class="fstep panel" data-fstep="4" aria-labelledby="fs4-title" hidden>
+            <header class="fstep-head">
+              <h2 class="fstep-title fstep-title-lg" id="fs4-title" tabindex="-1" data-i18n="s4Title"></h2>
+              <p class="fstep-lead" id="f-chief-lead" data-i18n="s4Lead"></p>
+            </header>
+            <div class="field">
+              <label class="field-label" for="f-chiefHint"><span data-i18n="chiefLabel"></span><span class="req" aria-hidden="true">*</span></label>
+              <textarea class="input chief" id="f-chiefHint" name="chiefHint" rows="6" maxlength="2000" required data-i18n-placeholder="chiefPh" aria-describedby="f-chief-lead"></textarea>
+            </div>
+            <div class="examples">
+              <p class="examples-title" data-i18n="exTitle"></p>
+              <ul class="examples-list">
+                <li data-i18n="ex1"></li>
+                <li data-i18n="ex2"></li>
+                <li data-i18n="ex3"></li>
+                <li class="examples-note" data-i18n="ex4"></li>
+              </ul>
+            </div>
+          </section>
+
+          <div class="actionbar">
+            <div class="actionbar-inner">
+              <button type="button" class="btn btn-ghost" id="btn-step-back">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" /></svg>
+                <span data-i18n="backBtn"></span>
+              </button>
+              <button type="submit" class="btn btn-primary" id="btn-step-next">
+                <span data-i18n="next"></span>
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+              </button>
+              <button type="submit" class="btn btn-primary" id="btn-to-symptom" hidden>
+                <span data-i18n="continueSymptom"></span>
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Interview -->
+    <section class="screen" id="screen-symptom" aria-labelledby="symptom-title">
+      <div class="wrap wrap-interview">
+        <h1 class="visually-hidden" id="symptom-title" data-i18n="interviewH1"></h1>
+        <ol class="stages" id="progress-track" data-i18n-aria-label="stagesLabel">
+          <li class="stage" data-stage="stageUnderstanding"><span class="stage-bar" aria-hidden="true"></span><span class="stage-name" data-i18n="stageUnderstanding"></span></li>
+          <li class="stage" data-stage="stageDetails"><span class="stage-bar" aria-hidden="true"></span><span class="stage-name" data-i18n="stageDetails"></span></li>
+          <li class="stage" data-stage="stageFinal"><span class="stage-bar" aria-hidden="true"></span><span class="stage-name" data-i18n="stageFinal"></span></li>
+        </ol>
+        <div id="emergency-slot"></div>
+        <figure class="said" id="said" hidden>
+          <figcaption class="said-label" data-i18n="youSaid"></figcaption>
+          <blockquote class="said-text" id="said-text"></blockquote>
+        </figure>
+        <div class="question-area" id="question-area"></div>
+        <p class="visually-hidden" id="interview-status" role="status" aria-live="polite"></p>
+        <details class="trail" id="trail" hidden>
+          <summary class="trail-summary">
+            <span data-i18n="trailTitle"></span>
+            <span class="trail-count" id="trail-count"></span>
+          </summary>
+          <ol class="answer-trail" id="answer-trail"></ol>
+        </details>
+      </div>
+    </section>
+
+    <!-- Confirmation -->
+    <section class="screen" id="screen-summary" aria-labelledby="done-title">
+      <div class="wrap">
+        <div class="panel confirm">
+          <div class="confirm-mark" aria-hidden="true">
+            <svg viewBox="0 0 52 52"><circle class="confirm-ring" cx="26" cy="26" r="24" /><path class="confirm-check" d="M15 27.5l7 7 15-16" /></svg>
+          </div>
+          <h1 class="confirm-title" id="done-title" tabindex="-1" data-i18n="doneTitle"></h1>
+          <p class="confirm-lead" data-i18n="doneLead"></p>
+          <h2 class="next-title" data-i18n="nextTitle"></h2>
+          <ol class="next-list">
+            <li data-i18n="next1"></li>
+            <li data-i18n="next2"></li>
+            <li data-i18n="next3"></li>
+          </ol>
+          <button type="button" class="btn btn-secondary" id="btn-start-new"><span data-i18n="startNew"></span></button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <dialog class="dialog" id="reset-dialog" aria-labelledby="reset-title" aria-describedby="reset-text">
+    <h2 class="dialog-title" id="reset-title" data-i18n="resetTitle"></h2>
+    <p class="dialog-text" id="reset-text" data-i18n="resetText"></p>
+    <div class="dialog-actions">
+      <button type="button" class="btn btn-ghost" id="btn-reset-no"><span data-i18n="resetNo"></span></button>
+      <button type="button" class="btn btn-danger" id="btn-reset-yes"><span data-i18n="resetYes"></span></button>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="/i18n.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>

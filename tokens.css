@@ -1,0 +1,190 @@
+/* Design tokens shared by the patient pages and the clinician workspace.
+   Only variables and a few base element styles live here; components are in
+   patient.css and doctor/review.css. */
+
+:root {
+  /* Typography */
+  --font-sans: "Manrope", "Noto Sans Georgian", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Noto Serif Georgian", "Iowan Old Style", Georgia, serif;
+  --font-mono: ui-monospace, "SFMono-Regular", Consolas, monospace;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-md: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: 1.75rem;
+  --text-3xl: 2.25rem;
+  --leading-tight: 1.25;
+  --leading-normal: 1.55;
+  --leading-relaxed: 1.7;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* Spacing scale (4px base) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  /* Colour: dark ink on warm off-white paper, with a single teal accent */
+  --ink-900: #0f1f24;
+  --ink-700: #2b3d43;
+  --ink-500: #56686e;
+  --ink-400: #7a8a8f;
+  --ink-300: #a9b5b8;
+  --line: #e3e7e4;
+  --line-strong: #cfd6d2;
+  --paper: #f6f4ef;
+  --surface: #ffffff;
+  --surface-sunken: #f0eee8;
+  --surface-raised: #ffffff;
+
+  --accent-700: #0b5a57;
+  --accent-600: #0e6f6b;
+  --accent-500: #13827d;
+  --accent-100: #dcefec;
+  --accent-50: #eef7f5;
+
+  /* Status colours. Always pair these with a label or icon — never colour alone. */
+  --danger-700: #9b1c1c;
+  --danger-600: #b42318;
+  --danger-100: #fde8e6;
+  --warning-700: #8a4b06;
+  --warning-600: #b25e09;
+  --warning-100: #fdf0dc;
+  --success-700: #1d6b3a;
+  --success-100: #e2f3e8;
+  --info-700: #1f4e8c;
+  --info-100: #e3ecf8;
+  /* AI-generated content and the doctor's own decision are styled differently on purpose */
+  --ai-tint: #f3f1fb;
+  --ai-line: #d9d3f0;
+  --ai-ink: #4b3f8a;
+  --human-tint: #eef7f2;
+  --human-line: #bfe0cc;
+  --human-ink: #1d5a3a;
+
+  /* Shape and depth */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --radius-pill: 999px;
+  --shadow-1: 0 1px 2px rgba(15, 31, 36, 0.06), 0 1px 1px rgba(15, 31, 36, 0.04);
+  --shadow-2: 0 6px 20px -8px rgba(15, 31, 36, 0.18), 0 2px 6px rgba(15, 31, 36, 0.06);
+  --shadow-3: 0 24px 48px -20px rgba(15, 31, 36, 0.28);
+  --focus-ring: 0 0 0 3px rgba(19, 130, 125, 0.35);
+
+  /* Motion. Keep it short; nothing should block input. */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-instant: 90ms;
+  --dur-fast: 160ms;
+  --dur-base: 240ms;
+  --dur-slow: 380ms;
+
+  /* Layout */
+  --content-narrow: 40rem;
+  --content-wide: 72rem;
+  --tap-min: 44px;
+
+  color-scheme: light;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-instant: 0ms;
+    --dur-fast: 0ms;
+    --dur-base: 0ms;
+    --dur-slow: 0ms;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Base elements */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--text-md);
+  line-height: var(--leading-normal);
+  color: var(--ink-900);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+  overflow-wrap: anywhere;
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: var(--radius-sm);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@keyframes mi-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes mi-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes mi-breathe {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

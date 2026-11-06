@@ -1,0 +1,13 @@
+{
+  "name": "medintake",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Pre-visit patient intake for clinics, in Georgian and English.",
+  "license": "PolyForm-Noncommercial-1.0.0",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node demo/server.js"
+  }
+}

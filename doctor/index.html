@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="referrer" content="same-origin" />
+  <title>MedIntake · შემთხვევების განხილვა</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/tokens.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+Georgian:wght@400;500;600;700&family=Noto+Serif+Georgian:wght@500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/doctor/review.css" />
+</head>
+<body class="review-page">
+  <a class="skip-link" href="#main">მთავარ შინაარსზე გადასვლა</a>
+  <div id="review-app" class="rv-app" data-view="boot">
+    <header class="rv-top" id="rv-top" hidden></header>
+    <main id="main" class="rv-main" tabindex="-1">
+      <section id="view-boot" class="view view-boot" aria-busy="true">
+        <span class="boot-mark" aria-hidden="true"></span>
+        <p class="boot-text" role="status">სამუშაო სივრცე იტვირთება…</p>
+        <noscript><p class="boot-text">MedIntake case review requires JavaScript.</p></noscript>
+      </section>
+      <section id="view-login" class="view view-login" hidden></section>
+      <section id="view-queue" class="view view-queue" aria-labelledby="queue-title" hidden></section>
+      <section id="view-case" class="view view-case" hidden></section>
+      <section id="view-message" class="view view-message" hidden></section>
+    </main>
+    <dialog id="confirm-dialog" class="confirm-dialog"></dialog>
+    <div id="rv-live" class="visually-hidden" aria-live="polite" aria-atomic="true"></div>
+  </div>
+  <script src="/doctor/review-i18n.js"></script>
+  <script src="/doctor/review.js"></script>
+</body>
+</html>
